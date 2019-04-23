@@ -1,12 +1,8 @@
 import discord
 from discord.ext import commands
+from discord.utils import get
 
-
-class Permissions(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
-
-    def permissions_check_local(self, member: discord.Member): # Verification des roles sur le serveur locale pour les
+def permissions_check_local(member: discord.Member): # Verification des roles sur le serveur locale pour les
         # permissions locale
         #
         #Les différents niveau de permissions pour les commandes locales sont :
@@ -37,9 +33,7 @@ class Permissions(commands.Cog):
             perms.append(4)
         return perms
 
-
-
-    def permissions_check_global(self, member: discord.Member): # Verification des roles du serveurs officiel pour les
+def permissions_check_global(ctx, member: discord.Member): # Verification des roles du serveurs officiel pour les
         # permissons globale
         #
         #
@@ -54,7 +48,7 @@ class Permissions(commands.Cog):
             return Exception
         roles = []
         perms = []
-        guild = self.bot.get_guild(566691210996088862)
+        guild = ctx.bot.get_guild(566691210996088862)
         member = guild.get_member(member.id)
         for list in member.roles:
             roles.append(list.id)
@@ -65,13 +59,11 @@ class Permissions(commands.Cog):
         perms.append(0)
         if lv1 in roles:
             perms.append(1)
-        elif lv2 in roles:
+        if lv2 in roles:
             perms.append(2)
-        elif lv3 in roles:
+        if lv3 in roles:
             perms.append(3)
-        elif lv4 in roles:
+        if lv4 in roles:
             perms.append(4)
         return perms
 
-def setup(bot):
-    bot.add_cog(Permissions(bot))
