@@ -1,0 +1,23 @@
+python -m pylint bot.py 
+build=$?
+if [ $build == 2 ]; then
+	exit 1
+fi
+
+python -m pylint cogs/help.py
+build=$?
+if [ $build == 2 ]; then
+	exit 1
+fi
+
+python -m pylint cogs/utils.py
+build=$?
+if [ $build == 2]; then
+    exit 1
+fi
+
+python -m pylint utils/permissions.py 
+build=$?
+if [ $build == 2 ]; then
+	exit 1
+fi
