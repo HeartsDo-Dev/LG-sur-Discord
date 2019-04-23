@@ -1,23 +1,77 @@
 import discord
 from discord.ext import commands
-from discord.utils import get
+
 
 class Permissions(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    def permissions_check_global(self, member: discord.Member): # Un outils pour voir votre niveau de permissions :)
+    def permissions_check_local(self, member: discord.Member): # Verification des roles sur le serveur locale pour les
+        # permissions locale
+        #
+        #Les différents niveau de permissions pour les commandes locales sont :
+        # Niveau 0 : @everyone
+        # Niveau 1 : Morts
+        # Niveau 2 : Joueurs
+        # Niveau 3 : Créateur de la partie
+        # Niveau 4 : MDJ
+        if not member:
+            print("Euh, WHAT (Permissions local: pas de membre dans la variable")
+            return Exception
+        roles = []
+        perms = []
+        for list in member.roles:
+            roles.append(list.name)
+        lv4 = "MDJ"
+        lv3 = "Créateur de la partie"
+        lv2 = "Joueurs"
+        lv1 = "Morts"
+        perms.append(0)
+        if lv1 in roles:
+            perms.append(1)
+        elif lv2 in roles:
+            perms.append(2)
+        elif lv3 in roles:
+            perms.append(3)
+        elif lv4 in roles:
+            perms.append(4)
+        return perms
+
+
+
+    def permissions_check_global(self, member: discord.Member): # Verification des roles du serveurs officiel pour les
+        # permissons globale
+        #
+        #
         # Les différents niveau de permissions pour les commandes globales sont :
         # Niveau 0 : @everyone
         # Niveau 1 : Créateurs de parties (si activé)
         # Niveau 2 : Modérateurs globaux
         # Niveau 3 : Développeurs
         # Niveau 4 : Propriétaire du bot
-        self.bot.get_guild(566691210996088862)
-        if :
+        if not member:
+            print("Euh, WHAT (Permissions global: pas de membre dans la variable")
+            return Exception
+        roles = []
+        perms = []
+        guild = self.bot.get_guild(566691210996088862)
+        member = guild.get_member(member.id)
+        for list in member.roles:
+            roles.append(list.id)
+        lv4 = 567023052437848064
+        lv3 = 567022994828951552
+        lv2 = 567023187192315904
+        lv1 = 567023810025357312
+        perms.append(0)
+        if lv1 in roles:
+            perms.append(1)
+        elif lv2 in roles:
+            perms.append(2)
+        elif lv3 in roles:
+            perms.append(3)
+        elif lv4 in roles:
             perms.append(4)
-        else:
-            return 0 # Niveau 0 = @everyone
+        return perms
 
 def setup(bot):
     bot.add_cog(Permissions(bot))

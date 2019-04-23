@@ -12,10 +12,10 @@ class Utils(commands.Cog):
         guild = await self.bot.create_guild(name="Test Guild for Bot")
         id = str(guild.id)
         await ctx.send("Guild ID: " + id)
-        asyncio.sleep(10)
+        await asyncio.sleep(5)
         await ctx.send(guild.channels)
         channel = guild.channels[1]
-        invite = await channel.create_invite(reason="Invite automaticaly created for the creator of the party")
+        invite = await channel.create_invite(reason="Invite automatically created for the creator of the party")
         await ctx.send(invite.url)
 
     @commands.command()
