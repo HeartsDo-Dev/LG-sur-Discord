@@ -10,7 +10,7 @@ pull_request_rules:
   - name: automatic merge for Contributors on the test branch
     conditions:
       - status-success=Travis CI - Pull Request
-      - base=test
+      - base=dev
       - author=@contributors
     actions:
       merge:
