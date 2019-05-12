@@ -10,6 +10,8 @@ token = config['token']
 
 initial_extensions = ['cogs.help',
                       'cogs.utils',
+                      'cogs.servers',
+                      'cogs.game',
                       'jishaku']
 bot = commands.Bot(command_prefix='+')
 

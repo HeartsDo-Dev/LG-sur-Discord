@@ -15,6 +15,7 @@ class Help(commands.Cog):
         print(perms)
 
 
+
 def setup(bot):
-    bot.remove_command("help")
+    # bot.remove_command("help")
     bot.add_cog(Help(bot))
