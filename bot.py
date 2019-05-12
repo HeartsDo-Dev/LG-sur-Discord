@@ -17,7 +17,7 @@ bot = commands.Bot(command_prefix='+')
 
 @bot.event
 async def on_ready():
-    print(f'\n\nConnecté en tant que: {bot.user.name} - {bot.user.id}\nVersion de discord.py: {discord.__version__}\n')
+    print(f'\n\nBot en cours de fonctionnemnt en tant que: {bot.user.name} - {bot.user.id}\nVersion de discord.py: {discord.__version__}\n')
     game = discord.Game(name="Le loup est là ! -- Version DEV")
     await bot.change_presence(activity=game, status=discord.Status.online)
     print(f'Bot prêt à faire des jeux !')
