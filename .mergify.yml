@@ -15,11 +15,3 @@ pull_request_rules:
     actions:
       merge:
         method: merge
-  - name: automatic merge for Contributors on the test branch
-    conditions:
-      - status-success=Travis CI - Pull Request
-      - base=dev
-      - author=@developy-dev/contributors
-    actions:
-      merge:
-        method: merge
