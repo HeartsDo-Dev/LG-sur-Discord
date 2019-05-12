@@ -10,7 +10,7 @@ class Help(commands.Cog):
 
     @commands.command()
     async def help(self, ctx):
-        await ctx.send("Oui, il n'y a rien ici :(")
+        await ctx.send("WIP, J'y travaille soit patient :o !")
         perms = utils.permissions.permissions_check_global(ctx, member=ctx.author)
         print(perms)
 

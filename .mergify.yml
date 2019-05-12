@@ -7,13 +7,11 @@ pull_request_rules:
     actions:
       merge:
         method: merge
-  - name: automatic merge for Contributors on the test branch
+  - name: automatic merge when CI passes and label Mergify-pass
     conditions:
       - status-success=Travis CI - Pull Request
-      - base=dev
-      - author=@contributors
+      - base=master
+      - label=Mergify-pass
     actions:
       merge:
         method: merge
-      backport:
-        branches: [master]
