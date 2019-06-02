@@ -3,6 +3,12 @@ from discord.ext import commands
 import json
 import utils.permissions
 import asyncio
+import sqlite3
+
+conn = sqlite3.connect('db-template.db')
+conn.text_factory = str
+cursor = conn.cursor()
+
 
 class Servers(commands.Cog):
     def __init__(self, bot):
@@ -22,6 +28,8 @@ class Servers(commands.Cog):
             perms_pass = True
         if 3 in perms:
             perms_pass = True
+        if 6 or 5 in perms:
+            perms_pass = True
         if perms_pass == True:
             await ctx.send("Bienvenue sur le créateur de serveur pour jouer à LG de Thiercelieux\n"
                            "Pour commencer, donner le nom de votre serveur : ")
@@ -34,12 +42,17 @@ class Servers(commands.Cog):
             await asyncio.sleep(3)
             guild = self.bot.get_guild(guild.id)
             channel = guild.channels[1]
-            idg = str(guild.id)
+            gid = str(guild.id)
             invite = await channel.create_invite(
                 reason="Invitation crée pour permettre au créateur de la partie de rejoindre")
+
             await ctx.send("Votre serveur est prêt !\n"
-                           "ID du serveur : " + idg + "\n"
+                           "ID du serveur : " + gid + "\n"
                            "Votre invitation au serveur : " + invite.url)
+            gid = int(gid)
+            cursor.execute("""INSERT INTO servers(id, name, owner) VALUES(?, ?, ?)""", (gid, name, ctx.author.id))
+            conn.commit()
+
         else:
             await ctx.send("Vous n'avez pas la permission d'executer cette commande !")
 

@@ -8,12 +8,6 @@ class Help(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
-    async def help(self, ctx):
-        await ctx.send("WIP, J'y travaille soit patient :o !")
-        perms = utils.permissions.permissions_check_global(ctx, member=ctx.author)
-        print(perms)
-
 
 
 def setup(bot):

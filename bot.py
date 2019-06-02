@@ -12,6 +12,7 @@ initial_extensions = ['cogs.help',
                       'cogs.utils',
                       'cogs.servers',
                       'cogs.game',
+                      'cogs.events',
                       'jishaku']
 bot = commands.Bot(command_prefix='+')
 
