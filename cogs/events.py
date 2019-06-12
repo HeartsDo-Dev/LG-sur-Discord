@@ -24,6 +24,8 @@ class Events(commands.Cog):
         except IndexError:
             owid = None
         if uid == owid:
+            channel = guild.channels[1]
+            await guild.edit(system_channel=channel, reason="Mise en place des messages systèmes de Discord !")
             channel = guild.system_channel
             perm = discord.Permissions(permissions=8)
             color = discord.Color(value=2554848)

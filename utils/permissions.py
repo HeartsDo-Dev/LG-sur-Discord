@@ -75,7 +75,7 @@ def permissions_check_global(ctx, member: discord.Member=None): # Verification d
             perms.append(6)
         return perms
 
-async def get_roles_with_level_global(self, level):
+def get_roles_with_level_global(ctx, level):
     # Récupérer le discord.Role via un level de permissions globale
     lv6 = 581901261251543057
     lv5 = 567022994828951552
@@ -83,7 +83,7 @@ async def get_roles_with_level_global(self, level):
     lv3 = 567023810025357312
     lv2 = 568134025278128160
     lv1 = 579036755156533291
-    guild = await self.bot.fetch_guild(566691210996088862)
+    guild = ctx.bot.get_guild(566691210996088862)
     if level == 1:
         return guild.get_role(lv1)
     elif level == 2:
