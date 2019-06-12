@@ -1,0 +1,14 @@
+image: python:3.7-stretch
+
+before_script:
+    - python -V
+    - pip -V
+    - pip install -r requirements.txt
+    
+stages:
+    - test
+
+lint:
+    stage: test
+    script:
+        - bash pylinter-error-check
